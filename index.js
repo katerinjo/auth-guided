@@ -52,5 +52,9 @@ server.get('/api/users', (req, res) => {
     .catch(err => res.send(err));
 });
 
+server.get('/api/hash', (req, res) => {
+    res.status(200).send();
+});
+
 const port = process.env.PORT || 5000;
 server.listen(port, () => console.log(`\n** Running on port ${port} **\n`));
