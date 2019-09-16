@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 
 const db = require('./database/dbConfig.js');
 const Users = require('./users/users-model.js');
@@ -53,7 +54,9 @@ server.get('/api/users', (req, res) => {
 });
 
 server.get('/api/hash', (req, res) => {
-    res.status(200).send();
+    const hash = bcrypt.hashSync(req.query.name, 8);
+
+    res.status(200).json({ hash });
 });
 
 const port = process.env.PORT || 5000;
